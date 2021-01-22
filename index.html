@@ -8,15 +8,20 @@
 
 </head>
 <body>
-    <head>Weather Dash</head>
-    <div class="container">
+    <header class="container-fluid text-center text-white bg-dark p-2">
+        <h1>Weather Dashboard</h1>
+      </header>
+    <div class="container-fluid">
+
         <div class="row">
-            <div class="col-4">
-                <h3>Search for city: </h3>
-                <div><textarea class = "city-text"></textarea><button class = "city-button">enter</button></div>
+            <div class="col-lg-3 bg-light">
+                <h5 class="mt-1">Search for city: </h5>
+                <div><textarea class = "city-text "></textarea><button class = "btn btn-primary city-button">enter</button></div>
             </div>
-            <ul></ul>
-            <div class="col-8">
+            <ul class="list-group cityList"></ul>
+        </div>
+        <div class="row align-items-start">
+            <div class="col-9">
                 <div class = "today-weather"></div>
                 <div class = "5day-forecast"></div>
             </div>

@@ -80,7 +80,7 @@ function fiveDayCast(city){
         for (var i = 0; i < response.list.length; i = i + 8) {
             var card = $("<div>").addClass("card")
 
-            var body = $("<div>").addClass("card-body")
+            var body = $("<div>").addClass("card-body bg-primary text-white")
 
             var weatherCastDay = response.list[i]
 
