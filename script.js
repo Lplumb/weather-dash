@@ -8,6 +8,7 @@ $(".city-button").on("click", function(){
 //call search weather function
 weatherSearch(city);
 fiveDayCast(city);
+cityList(city);
 })
 
 function weatherSearch(city) {
@@ -56,6 +57,7 @@ function UVIndex(lat, lon){
 
         var UVValue = $("<p>").text(`UV Index: ${response.value}`)
         $(".today-weather .card-body").append(UVValue)
+        
 
 
     })
@@ -70,6 +72,44 @@ function fiveDayCast(city){
         url: queryURL
     }).then(function(response){
         console.log(response)
+
+        var weatherCast = response.list[0]
+
+        console.log(weatherCast)
+
+        for (var i = 0; i < response.list.length; i = i + 8) {
+            var card = $("<div>").addClass("card")
+
+            var body = $("<div>").addClass("card-body")
+
+            var weatherCastDay = response.list[i]
+
+            var fiveCastDate = $("<h2>").text(weatherCastDay.dt_txt)
+
+
+            var fiveCastTemp = $("<p>").text(`temp: ${weatherCastDay.main.temp}`)
+
+
+            var fiveCastHumidity = $("<p>").text(`Humidity: ${weatherCastDay.main.humidity}`)
+
+
+            var fiveCastMain = $("<p>").text(weatherCastDay.weather[0].icon)
+
+
+            body.append(fiveCastDate, fiveCastMain, fiveCastTemp, fiveCastHumidity)
+
+            card.append(body)
+    
+            $(".5day-forecast").append(card)
+
+        }
+        
     })
+
+}
+
+function cityList(city){
+
+    localStorage.setItem(city)
 
 }
