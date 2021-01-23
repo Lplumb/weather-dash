@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dash</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+    <style>
+        .UVreadingBad span {
+            background: Red;
+            color: white;
+        }
+
+        .UVreadingGood span{
+            background: lightblue;
+        }
+
+        .UVreadingOk span{
+            background: orange;
+            color: white;
+        }
+
+        body {
+            background: gray;
+            
+        }
+    </style>
+</head>
+<body>
+
+
+    <header class="container-fluid text-center text-white bg-dark p-2">
+        <h1>Weather Dashboard</h1>
+    </header>
+
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <aside class="col-lg-3 bg-light">
+
+                <h5 class="mt-1">Search for city: </h5>
+
+                <div class="form-inline form-group">
+
+                    <div><textarea class = "city-text "></textarea><button class = "btn btn-primary city-button">enter</button></div>
+
+                </div>
+                
+                <ul class="list-group cityList"></ul>
+
+            </aside>
+
+            <div class="col-9 weatherData">
+
+                <div class = "today-weather"></div>
+
+                <br>
+
+                <div class = "row 5day-forecast"></div>
+
+            </div>
+
+
+        </div>
+
+        <div class="row align-item-start"></div></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src = "script.js"></script>
+    
+</body>
+</html>

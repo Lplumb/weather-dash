@@ -5,6 +5,12 @@ $(".city-button").on("click", function(){
     console.log(city)
 
     $(".city-text").val("")
+
+    $(".today-weather").empty()
+
+    $(".5day-forecast").empty()
+    
+
 //call search weather function
 weatherSearch(city);
 fiveDayCast(city);
@@ -27,13 +33,16 @@ function weatherSearch(city) {
 
         var cityName = $("<h2>").text(response.name)
 
-        var temp = $("<p>").text(`temp: ${response.main.temp}`)
+        var temp = $("<p>").text(`temp: ${response.main.temp} F°`)
 
-        var humid = $("<p>").text(`Humidity: ${response.main.humidity}`)
+        var humid = $("<p>").text(`Humidity: ${response.main.humidity}%`)
 
-        var wind = $("<p>").text(`Wind Speed: ${response.wind.speed}`)
+        var wind = $("<p>").text(`Wind Speed: ${response.wind.speed} MPH`)
+        
+        var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png")
 
-        body.append(cityName, temp, humid, wind)
+
+        body.append(cityName, img , temp, humid, wind)
 
         card.append(body)
 
@@ -55,7 +64,16 @@ function UVIndex(lat, lon){
     }).then(function(response){
         console.log(response)
 
-        var UVValue = $("<p>").text(`UV Index: ${response.value}`)
+        if (response.value <= 2 ){
+            var UVValue = $("<p>").addClass("UVreadingGood").html( "UV index <span>" + response.value + "</span>" )
+
+        } else if (2 < response.value <= 7) {
+            var UVValue = $("<p>").addClass("UVreadingOk").html( "UV index <span>" + response.value + "</span>" )
+
+        } else {
+            var UVValue = $("<p>").addClass("UVreadingBad").html( "UV index <span>" + response.value + "</span>" )
+        }
+
         $(".today-weather .card-body").append(UVValue)
         
 
@@ -73,30 +91,33 @@ function fiveDayCast(city){
     }).then(function(response){
         console.log(response)
 
+
         var weatherCast = response.list[0]
 
         console.log(weatherCast)
 
         for (var i = 0; i < response.list.length; i = i + 8) {
-            var card = $("<div>").addClass("card")
+            var card = $("<div class = 'col-md-2'>");
 
-            var body = $("<div>").addClass("card-body bg-primary text-white")
+            var body = $("<div>").addClass("bg-primary text-white")
 
             var weatherCastDay = response.list[i]
 
-            var fiveCastDate = $("<h2>").text(weatherCastDay.dt_txt)
+            var fiveCastDate = $("<h2>").text(weatherCastDay.dt_txt.substring(0,10))
 
 
-            var fiveCastTemp = $("<p>").text(`temp: ${weatherCastDay.main.temp}`)
+            var fiveCastTemp = $("<p>").text(`temp: ${weatherCastDay.main.temp} F°`)
 
 
-            var fiveCastHumidity = $("<p>").text(`Humidity: ${weatherCastDay.main.humidity}`)
+            var fiveCastHumidity = $("<p>").text(`Humidity: ${weatherCastDay.main.humidity}%`)
 
 
             var fiveCastMain = $("<p>").text(weatherCastDay.weather[0].icon)
 
+            var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + weatherCastDay.weather[0].icon + ".png")
+            
 
-            body.append(fiveCastDate, fiveCastMain, fiveCastTemp, fiveCastHumidity)
+            body.append(fiveCastDate, img, fiveCastTemp, fiveCastHumidity)
 
             card.append(body)
     
@@ -110,6 +131,12 @@ function fiveDayCast(city){
 
 function cityList(city){
 
-    localStorage.setItem(city)
+    var list = $("<li class = 'card-body'>").html(city)
+
+    $(".cityList").append(list)
+
+    localStorage.setItem("cityname", city)
+
+
 
 }
