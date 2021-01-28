@@ -18,7 +18,7 @@ cityList(city);
 })
 
 function weatherSearch(city) {
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=28d37e6656eadc2994bbfd340f0e904e"
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=28d37e6656eadc2994bbfd340f0e904e"
 
     $.ajax({
     type: "GET",
@@ -39,7 +39,7 @@ function weatherSearch(city) {
 
         var wind = $("<p>").text(`Wind Speed: ${response.wind.speed} MPH`)
         
-        var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png")
+        var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png")
 
 
         body.append(cityName, img , temp, humid, wind)
@@ -56,7 +56,7 @@ function weatherSearch(city) {
 
 function UVIndex(lat, lon){
 
-    var queryURL = `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=28d37e6656eadc2994bbfd340f0e904e`
+    var queryURL = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=28d37e6656eadc2994bbfd340f0e904e`
 
     $.ajax({
         type: "GET",
@@ -83,7 +83,7 @@ function UVIndex(lat, lon){
 }
 
 function fiveDayCast(city){
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=28d37e6656eadc2994bbfd340f0e904e"
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=28d37e6656eadc2994bbfd340f0e904e"
 
     $.ajax({
         type: "GET",
@@ -114,7 +114,7 @@ function fiveDayCast(city){
 
             var fiveCastMain = $("<p>").text(weatherCastDay.weather[0].icon)
 
-            var img = $("<img>").attr("src", "http://openweathermap.org/img/w/" + weatherCastDay.weather[0].icon + ".png")
+            var img = $("<img>").attr("src", "https://openweathermap.org/img/w/" + weatherCastDay.weather[0].icon + ".png")
             
 
             body.append(fiveCastDate, img, fiveCastTemp, fiveCastHumidity)
