@@ -131,11 +131,28 @@ function fiveDayCast(city){
 
 function cityList(city){
 
-    var list = $("<li class = 'card-body'>").html(city)
+    var list = $("<li class = 'card-body'>").html("<button class = 'cityListButton btn btn-primary'>" + city + "</button>")
 
     $(".cityList").append(list)
 
     localStorage.setItem("cityname", city)
+
+$(".cityListButton").on("click",function(){
+
+    var city = $(this).text()
+
+    weatherSearch(city);
+    fiveDayCast(city);
+
+
+    $(".city-text").val("")
+
+    $(".today-weather").empty()
+
+    $(".5day-forecast").empty()
+
+    
+} )
 
 
 
